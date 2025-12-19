@@ -1,1 +1,187 @@
-<h1>pro matu</h1>
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<title>Vánoční úloha – dárky</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: Poppins, sans-serif;
+    min-height: 100vh;
+    background:
+        linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),
+        url("https://images.unsplash.com/photo-1543589077-47d81606c1bf");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: #fff;
+}
+
+.card {
+    background: rgba(255,255,255,.12);
+    backdrop-filter: blur(8px);
+    border-radius: 22px;
+    padding: 32px;
+    max-width: 560px;
+    box-shadow: 0 20px 40px rgba(0,0,0,.35);
+    z-index: 2;
+}
+
+h1 {
+    text-align: center;
+    color: #ffd6d6;
+}
+
+.gifts {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+.gift {
+    font-size: 1.8rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+.gift:nth-child(2){animation-delay:.4s}
+.gift:nth-child(3){animation-delay:.8s}
+.gift:nth-child(4){animation-delay:1.2s}
+
+@keyframes float {
+    0%,100% {transform: translateY(0)}
+    50% {transform: translateY(-10px)}
+}
+
+ul {
+    padding-left: 20px;
+}
+
+.question {
+    margin-top: 20px;
+    padding: 16px;
+    background: rgba(255,255,255,.15);
+    border-radius: 12px;
+    text-align: center;
+}
+
+.inputs {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 14px;
+}
+
+input {
+    width: 70px;
+    padding: 8px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
+    text-align: center;
+}
+
+button {
+    margin-top: 14px;
+    padding: 10px 22px;
+    border-radius: 20px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    background: #ffd6d6;
+    font-weight: 600;
+}
+
+.result {
+    margin-top: 12px;
+    font-weight: 500;
+}
+
+/* Sníh */
+.snow {
+    position: fixed;
+    top: -10px;
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+    opacity: .8;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <div class="gifts">
+        <div class="gift">🎁</div>
+        <div class="gift">🎁</div>
+        <div class="gift">🎁</div>
+        <div class="gift">🎁</div>
+    </div>
+
+    <h1>🎄 Vánoční úloha 🎄</h1>
+
+    <p>Pod stromečkem leží dárky ve třech řadách.</p>
+    <ul>
+        <li>V první řadě je <strong>18 dárků</strong>.</li>
+        <li>Ve druhé řadě je <strong>o 17 dárků méně</strong> než v první.</li>
+        <li>Ve třetí řadě je <strong>o 25 dárků více</strong> než ve druhé.</li>
+    </ul>
+
+    <div class="question">
+        <strong>Kolik dárků je v každé řadě?</strong>
+
+        <div class="inputs">
+            <input type="number" id="r1" placeholder="1.">
+            <input type="number" id="r2" placeholder="2.">
+            <input type="number" id="r3" placeholder="3.">
+        </div>
+
+        <button onclick="check()">Zkontrolovat</button>
+        <div class="result" id="result"></div>
+    </div>
+</div>
+
+<script>
+function check() {
+    const r1 = Number(document.getElementById("r1").value);
+    const r2 = Number(document.getElementById("r2").value);
+    const r3 = Number(document.getElementById("r3").value);
+    const result = document.getElementById("result");
+
+    if (r1 === 18 && r2 === 1 && r3 === 26) {
+        result.textContent = "🎉 Správně! Dárky spočítány 🎁";
+    } else {
+        result.textContent = "❄️ Ještě to nesedí, zkus znovu.";
+    }
+}
+
+/* Generování sněhu */
+for (let i = 0; i < 45; i++) {
+    const snow = document.createElement("div");
+    snow.className = "snow";
+    snow.style.left = Math.random() * 100 + "vw";
+    snow.style.animationDuration = 5 + Math.random() * 6 + "s";
+    snow.style.opacity = Math.random();
+    snow.style.transform = `scale(${Math.random()})`;
+    document.body.appendChild(snow);
+}
+</script>
+
+</body>
+</html>
