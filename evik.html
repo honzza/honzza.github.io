@@ -1,1 +1,193 @@
-<h1>cau pupinku! hehe</h1>
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<title>Vánoční úloha – světýlka</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: Poppins, sans-serif;
+    min-height: 100vh;
+    background:
+        linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),
+        url("https://images.unsplash.com/photo-1512389142860-9c449e58a543");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: #fff;
+}
+
+.card {
+    position: relative;
+    background: rgba(255,255,255,.12);
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+    padding: 32px;
+    max-width: 540px;
+    box-shadow: 0 20px 40px rgba(0,0,0,.35);
+    z-index: 2;
+}
+
+h1 {
+    text-align: center;
+    color: #ffe9a8;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+.question {
+    margin-top: 20px;
+    padding: 16px;
+    background: rgba(255,255,255,.15);
+    border-radius: 12px;
+    text-align: center;
+}
+
+.inputs {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 16px;
+}
+
+input {
+    width: 80px;
+    padding: 8px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
+    text-align: center;
+}
+
+button {
+    margin-top: 14px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    background: #ffe9a8;
+    font-weight: 600;
+}
+
+.result {
+    margin-top: 14px;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* Světýlka */
+.lights {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.bulb {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    animation: blink 2s infinite;
+}
+
+.bulb:nth-child(1){background:red}
+.bulb:nth-child(2){background:yellow;animation-delay:.3s}
+.bulb:nth-child(3){background:lime;animation-delay:.6s}
+.bulb:nth-child(4){background:cyan;animation-delay:.9s}
+.bulb:nth-child(5){background:orange;animation-delay:1.2s}
+
+@keyframes blink {
+    0%,100% {opacity: .3}
+    50% {opacity: 1}
+}
+
+/* Sněžení */
+.snow {
+    position: fixed;
+    top: -10px;
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+    opacity: .8;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <div class="lights">
+        <div class="bulb"></div>
+        <div class="bulb"></div>
+        <div class="bulb"></div>
+        <div class="bulb"></div>
+        <div class="bulb"></div>
+    </div>
+
+    <h1>🎄 Vánoční úloha 🎄</h1>
+
+    <p>Při vánočním úklidu se našly dvě krabice se světýlky.</p>
+    <ul>
+        <li>V první krabici je <strong>o 6 světel více</strong> než v druhé.</li>
+        <li>Dohromady je v obou krabicích <strong>8 světel</strong>.</li>
+    </ul>
+
+    <div class="question">
+        <strong>Kolik světel je v první a druhé krabici?</strong>
+
+        <div class="inputs">
+            <input type="number" id="first" placeholder="1.">
+            <input type="number" id="second" placeholder="2.">
+        </div>
+
+        <button onclick="check()">Zkontrolovat</button>
+
+        <div class="result" id="result"></div>
+    </div>
+</div>
+
+<script>
+function check() {
+    const a = Number(document.getElementById("first").value);
+    const b = Number(document.getElementById("second").value);
+    const result = document.getElementById("result");
+
+    if (a === 7 && b === 1) {
+        result.textContent = "🎉 Správně! Veselé Vánoce 🎄";
+    } else {
+        result.textContent = "❄️ Zkus to ještě jednou.";
+    }
+}
+
+/* Generování sněhu */
+for (let i = 0; i < 50; i++) {
+    const snow = document.createElement("div");
+    snow.className = "snow";
+    snow.style.left = Math.random() * 100 + "vw";
+    snow.style.animationDuration = 5 + Math.random() * 5 + "s";
+    snow.style.opacity = Math.random();
+    snow.style.transform = `scale(${Math.random()})`;
+    document.body.appendChild(snow);
+}
+</script>
+
+</body>
+</html>
